@@ -3,6 +3,7 @@ package com.lucianofranca.apitests.services;
 import com.lucianofranca.apitests.domain.User;
 import com.lucianofranca.apitests.domain.dto.UserDTO;
 import com.lucianofranca.apitests.rrepositories.UserRepository;
+import com.lucianofranca.apitests.services.exceptions.DataIntegratyViolationException;
 import com.lucianofranca.apitests.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +20,7 @@ import java.util.Optional;
 import static org.hibernate.validator.internal.util.Contracts.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 
 @SpringBootTest
 class UserServiceImplTest {
@@ -101,6 +103,20 @@ class UserServiceImplTest {
         assertEquals(NAME, response.getName());
         assertEquals(EMAIL, response.getEmail());
         assertEquals(PASSWORD, response.getPassword());
+    }
+
+    @Test
+    void whenCreateThenReturnAnDataIntegratyViolationException() {
+        Mockito.when(repository.findByEmail(anyString())).thenReturn(optionalUser);
+
+        try {
+            optionalUser.get().setId(2);
+            service.create(userDTO);
+        }
+        catch (Exception ex) {
+            assertEquals(DataIntegratyViolationException.class, ex.getClass());
+            assertEquals("E-mail já cadastrado no sistema!", ex.getMessage());
+        }
     }
 
     @Test
