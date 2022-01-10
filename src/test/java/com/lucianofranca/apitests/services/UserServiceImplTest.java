@@ -2,7 +2,7 @@ package com.lucianofranca.apitests.services;
 
 import com.lucianofranca.apitests.domain.User;
 import com.lucianofranca.apitests.domain.dto.UserDTO;
-import com.lucianofranca.apitests.rrepositories.UserRepository;
+import com.lucianofranca.apitests.repositories.UserRepository;
 import com.lucianofranca.apitests.services.exceptions.DataIntegratyViolationException;
 import com.lucianofranca.apitests.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.BeforeEach;

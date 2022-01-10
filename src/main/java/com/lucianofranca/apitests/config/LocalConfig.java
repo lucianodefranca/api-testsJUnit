@@ -1,7 +1,7 @@
 package com.lucianofranca.apitests.config;
 
 import com.lucianofranca.apitests.domain.User;
-import com.lucianofranca.apitests.rrepositories.UserRepository;
+import com.lucianofranca.apitests.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

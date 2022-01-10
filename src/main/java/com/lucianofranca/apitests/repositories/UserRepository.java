@@ -1,4 +1,4 @@
-package com.lucianofranca.apitests.rrepositories;
+package com.lucianofranca.apitests.repositories;
 
 import com.lucianofranca.apitests.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
